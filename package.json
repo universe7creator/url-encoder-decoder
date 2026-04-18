@@ -1,0 +1,14 @@
+{
+  "name": "url-encoder-decoder",
+  "version": "1.0.0",
+  "description": "Encode and decode URLs with advanced options for query params, paths, and components. Essential tool for web developers.",
+  "main": "api/process.js",
+  "scripts": {
+    "dev": "node dev-server.js",
+    "vercel-build": "echo 'Build complete'"
+  },
+  "dependencies": {},
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

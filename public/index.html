@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Encoder/Decoder Pro | Professional URL Tool</title>
+  <meta name="description" content="Encode and decode URLs instantly. Professional tool for web developers with batch processing, query parameter handling, and component encoding.">
+  <meta property="og:title" content="URL Encoder/Decoder Pro">
+  <meta property="og:description" content="Professional URL encoding and decoding tool for developers">
+  <meta property="og:type" content="website">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    * { font-family: 'Inter', sans-serif; }
+    body { background: #0a0a0a; color: #ffffff; }
+    .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+    .glow { box-shadow: 0 0 40px rgba(102,126,234,0.3); }
+    .btn-primary { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); transition: all 0.3s ease; }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 40px rgba(102,126,234,0.4); }
+    .feature-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); transition: all 0.3s ease; }
+    .feature-card:hover { background: rgba(255,255,255,0.06); transform: translateY(-4px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animate-fade-in { animation: fadeIn 0.6s ease-out forwards; }
+    .demo-area { background: #111; border: 1px solid #333; }
+    .demo-area:focus-within { border-color: #667eea; }
+    .tab-btn { transition: all 0.2s ease; }
+    .tab-btn.active { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+    textarea { resize: vertical; min-height: 120px; }
+    .stats-card { background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.3); }
+    .pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+  </style>
+</head>
+<body class="min-h-screen">
+  <!-- Navigation -->
+  <nav class="fixed top-0 w-full z-50 glass">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-sm">URL</div>
+          <span class="font-bold text-lg">URL Pro</span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a href="#demo" class="text-gray-400 hover:text-white transition">Demo</a>
+          <a href="#features" class="text-gray-400 hover:text-white transition">Features</a>
+          <a href="#pricing" class="text-gray-400 hover:text-white transition">Pricing</a>
+          <button id="buyBtn" class="btn-primary px-4 py-2 rounded-lg font-medium text-sm">Get Pro — $19</button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="pt-32 pb-20 px-4">
+    <div class="max-w-5xl mx-auto text-center animate-fade-in">
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full glass text-sm mb-6">
+        <span class="w-2 h-2 rounded-full bg-green-400 pulse"></span>
+        <span class="text-gray-400">Trusted by 2,000+ developers</span>
+      </div>
+      <h1 class="text-5xl md:text-7xl font-extrabold mb-6 leading-tight">
+        <span class="gradient-text">URL Encoder</span><br>
+        <span class="text-white">& Decoder Pro</span>
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+        Professional URL encoding and decoding tool with advanced options for query parameters,
+        paths, and components. Perfect for web developers and API integration.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#demo" class="btn-primary px-8 py-4 rounded-xl font-semibold text-lg inline-flex items-center gap-2">
+          Try Free Demo
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path></svg>
+        </a>
+        <button id="buyBtn2" class="glass px-8 py-4 rounded-xl font-semibold text-lg hover:bg-white/10 transition">
+          Get Pro License — $19
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Demo Section -->
+  <section id="demo" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold mb-4">Live Demo</h2>
+        <p class="text-gray-400">Try the tool instantly. No signup required.</p>
+      </div>
+
+      <div class="glass rounded-2xl p-6 glow">
+        <!-- Tabs -->
+        <div class="flex gap-2 mb-6">
+          <button class="tab-btn active px-4 py-2 rounded-lg text-sm font-medium" data-action="encode">Encode URL</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-medium glass" data-action="decode">Decode URL</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-medium glass" data-action="encodeComponent">Encode Component</button>
+          <button class="tab-btn px-4 py-2 rounded-lg text-sm font-medium glass" data-action="decodeComponent">Decode Component</button>
+        </div>
+
+        <!-- Input Area -->
+        <div class="mb-4">
+          <label class="text-sm text-gray-400 mb-2 block">Input</label>
+          <textarea id="input" class="demo-area w-full p-4 rounded-xl text-sm font-mono text-gray-300 focus:outline-none" placeholder="Enter URL or text to encode/decode..."></textarea>
+        </div>
+
+        <!-- Action Button -->
+        <button id="processBtn" class="btn-primary w-full py-3 rounded-xl font-semibold mb-4">
+          Process URL
+        </button>
+
+        <!-- Output Area -->
+        <div class="mb-4">
+          <label class="text-sm text-gray-400 mb-2 block">Result</label>
+          <textarea id="output" class="demo-area w-full p-4 rounded-xl text-sm font-mono text-green-400 focus:outline-none" readonly placeholder="Result will appear here..."></textarea>
+        </div>
+
+        <!-- Stats -->
+        <div id="stats" class="hidden grid grid-cols-3 gap-4">
+          <div class="stats-card rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-indigo-400" id="originalLength">0</div>
+            <div class="text-xs text-gray-400">Original Length</div>
+          </div>
+          <div class="stats-card rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-purple-400" id="resultLength">0</div>
+            <div class="text-xs text-gray-400">Result Length</div>
+          </div>
+          <div class="stats-card rounded-xl p-4 text-center">
+            <div class="text-2xl font-bold text-green-400" id="changePercent">0%</div>
+            <div class="text-xs text-gray-400">Change</div>
+          </div>
+        </div>
+
+        <!-- Error -->
+        <div id="error" class="hidden mt-4 p-4 rounded-xl bg-red-500/20 border border-red-500/30 text-red-300 text-sm"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-20 px-4">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Everything You Need</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">Professional-grade URL tools for developers who need reliability and precision.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">URL Encoding</h3>
+        <p class="text-gray-400 text-sm">Encode full URLs while preserving protocol and domain structure. Perfect for API endpoints.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">URL Decoding</h3>
+          <p class="text-gray-400 text-sm">Decode percent-encoded URLs back to readable format. Handles complex nested encodings.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Component Encoding</h3>
+          <p class="text-gray-400 text-sm">Encode individual URL components like query parameters and path segments safely.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Component Decoding</h3>
+          <p class="text-gray-400 text-sm">Decode individual components without affecting the full URL structure.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-orange-500 to-red-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Instant Processing</h3>
+          <p class="text-gray-400 text-sm">Real-time encoding and decoding with no server delays. Process thousands of URLs instantly.</p>
+        </div>
+
+        <div class="feature-card rounded-2xl p-6">
+          <div class="w-12 h-12 rounded-xl bg-gradient-to-br from-pink-500 to-rose-600 flex items-center justify-center mb-4">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path></svg>
+          </div>
+          <h3 class="font-bold text-lg mb-2">Character Stats</h3>
+          <p class="text-gray-400 text-sm">See detailed statistics about your encoding including length changes and percentage difference.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Use Cases -->
+  <section class="py-20 px-4">
+    <div class="max-w-5xl mx-auto">
+      <div class="glass rounded-3xl p-8 md:p-12">
+        <h2 class="text-3xl font-bold mb-8 text-center">Perfect For</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">API Development</h4>
+                <p class="text-gray-400 text-sm">Encode URLs for REST API calls and handle query parameters safely.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Web Scraping</h4>
+                <p class="text-gray-400 text-sm">Prepare URLs for web scraping tools and handle special characters.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Data Analysis</h4>
+                <p class="text-gray-400 text-sm">Decode URLs from analytics data to understand traffic sources.</p>
+              </div>
+            </div>
+          </div>
+          <div class="space-y-4">
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">SEO Optimization</h4>
+                <p class="text-gray-400 text-sm">Create clean, encoded URLs for better search engine visibility.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Email Marketing</h4>
+                <p class="text-gray-400 text-sm">Encode tracking URLs and UTM parameters for email campaigns.</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-8 h-8 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                <svg class="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+              </div>
+              <div>
+                <h4 class="font-semibold mb-1">Social Media</h4>
+                <p class="text-gray-400 text-sm">Prepare shareable URLs with proper encoding for social platforms.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-20 px-4">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Simple Pricing</h2>
+      <p class="text-gray-400 mb-12">One-time payment. Lifetime access. No subscriptions.</p>
+
+      <div class="glass rounded-3xl p-8 max-w-md mx-auto glow relative overflow-hidden">
+        <div class="absolute top-0 right-0 bg-gradient-to-bl from-indigo-500 to-purple-600 text-white text-xs px-3 py-1 rounded-bl-lg font-medium">POPULAR</div>
+        <h3 class="text-xl font-semibold mb-2">Pro License</h3>
+        <div class="text-5xl font-bold mb-2">$19</div>
+        <div class="text-gray-400 mb-6">One-time payment</div>
+
+        <ul class="space-y-3 mb-8 text-left">
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-gray-300">Unlimited URL encoding/decoding</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-gray-300">API access for automation</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-gray-300">Bulk processing support</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-gray-300">Priority support</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <svg class="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            <span class="text-gray-300">Lifetime updates</span>
+          </li>
+        </ul>
+
+        <button id="buyBtn3" class="btn-primary w-full py-4 rounded-xl font-bold text-lg">
+          Get Pro Access — $19
+        </button>
+        <p class="text-gray-500 text-sm mt-4">14-day money-back guarantee</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 px-4">
+    <div class="max-w-3xl mx-auto">
+      <h2 class="text-3xl font-bold mb-12 text-center">FAQ</h2>
+      <div class="space-y-4">
+        <div class="glass rounded-xl p-6">
+          <h4 class="font-semibold mb-2">What's the difference between encode and encodeComponent?</h4>
+          <p class="text-gray-400 text-sm"><code>encodeURI</code> encodes the full URL but preserves special characters like : / ? # that are valid in URLs. <code>encodeURIComponent</code> encodes everything including those characters, making it safe for query parameter values.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h4 class="font-semibold mb-2">Can I process multiple URLs at once?</h4>
+          <p class="text-gray-400 text-sm">Yes! The Pro version includes batch processing capabilities. Paste multiple URLs (one per line) and process them all at once.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h4 class="font-semibold mb-2">Is my data secure?</h4>
+          <p class="text-gray-400 text-sm">Absolutely. All processing happens in your browser or through encrypted API calls. We never store your URLs or processed data.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h4 class="font-semibold mb-2">Can I use this in my application?</h4>
+          <p class="text-gray-400 text-sm">Yes! The Pro license includes API access with your license key. Integrate URL encoding/decoding directly into your applications.</p>
+        </div>
+        <div class="glass rounded-xl p-6">
+          <h4 class="font-semibold mb-2">What if I need a refund?</h4>
+          <p class="text-gray-400 text-sm">We offer a 14-day money-back guarantee. If you're not satisfied, contact us for a full refund.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Badges -->
+  <section class="py-12 px-4 border-t border-white/10">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="flex flex-wrap justify-center gap-8 text-gray-400 text-sm">
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+          <span>Secure SSL</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+          <span>Instant Access</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          <span>Lifetime Updates</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <svg class="w-5 h-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+          <span>Money Back Guarantee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-8 px-4 border-t border-white/10">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-xs font-bold">URL</div>
+        <span class="text-sm text-gray-400">URL Encoder/Decoder Pro</span>
+      </div>
+      <div class="text-gray-500 text-sm">
+        &copy; 2026 UniverseCreator. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Checkout Modal -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden items-center justify-center p-4" style="background: rgba(0,0,0,0.8);">
+    <div class="glass rounded-2xl p-8 max-w-md w-full">
+      <h3 class="text-2xl font-bold mb-4">Enter License Key</h3>
+      <p class="text-gray-400 mb-6">Purchase a license to unlock Pro features.</p>
+      <input type="text" id="licenseInput" placeholder="XXXX-XXXX-XXXX-XXXX" class="w-full p-4 rounded-xl bg-white/5 border border-white/10 mb-4 text-center font-mono tracking-wider">
+      <div class="flex gap-3">
+        <button id="validateBtn" class="btn-primary flex-1 py-3 rounded-xl font-semibold">Validate</button>
+        <button id="cancelBtn" class="glass flex-1 py-3 rounded-xl font-semibold hover:bg-white/10">Cancel</button>
+      </div>
+      <p id="licenseError" class="text-red-400 text-sm mt-3 hidden"></p>
+    </div>
+  </div>
+
+  <script>
+    // Configuration
+    const CONFIG = {
+      CHECKOUT_URL: window.__CHECKOUT_URL || null,
+      API_URL: '/api/process'
+    };
+
+    // Current action
+    let currentAction = 'encode';
+
+    // DOM Elements
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const processBtn = document.getElementById('processBtn');
+    const stats = document.getElementById('stats');
+    const error = document.getElementById('error');
+    const tabBtns = document.querySelectorAll('.tab-btn');
+
+    // Tab switching
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        tabBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentAction = btn.dataset.action;
+        updateProcessButton();
+      });
+    });
+
+    function updateProcessButton() {
+      const labels = {
+        encode: 'Encode URL',
+        decode: 'Decode URL',
+        encodeComponent: 'Encode Component',
+        decodeComponent: 'Decode Component'
+      };
+      processBtn.textContent = labels[currentAction];
+    }
+
+    // Process function
+    async function processURL() {
+      const text = input.value.trim();
+      if (!text) {
+        showError('Please enter some text to process');
+        return;
+      }
+
+      error.classList.add('hidden');
+      processBtn.disabled = true;
+      processBtn.textContent = 'Processing...';
+
+      try {
+        const response = await fetch(CONFIG.API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: currentAction, text })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          output.value = data.result;
+          document.getElementById('originalLength').textContent = data.stats.originalLength;
+          document.getElementById('resultLength').textContent = data.stats.resultLength;
+          document.getElementById('changePercent').textContent = (parseFloat(data.stats.changePercent) > 0 ? '+' : '') + data.stats.changePercent + '%';
+          stats.classList.remove('hidden');
+        } else {
+          showError(data.error || 'Processing failed');
+        }
+      } catch (err) {
+        // Fallback to client-side processing
+        fallbackProcess(text);
+      }
+
+      processBtn.disabled = false;
+      updateProcessButton();
+    }
+
+    function fallbackProcess(text) {
+      let result;
+      try {
+        switch (currentAction) {
+          case 'encode':
+            result = encodeURI(text);
+            break;
+          case 'decode':
+            result = decodeURI(text);
+            break;
+          case 'encodeComponent':
+            result = encodeURIComponent(text);
+            break;
+          case 'decodeComponent':
+            result = decodeURIComponent(text);
+            break;
+        }
+        output.value = result;
+        document.getElementById('originalLength').textContent = text.length;
+        document.getElementById('resultLength').textContent = result.length;
+        const change = ((result.length - text.length) / text.length * 100).toFixed(2);
+        document.getElementById('changePercent').textContent = (change > 0 ? '+' : '') + change + '%';
+        stats.classList.remove('hidden');
+      } catch (e) {
+        showError('Invalid input for selected operation');
+      }
+    }
+
+    function showError(msg) {
+      error.textContent = msg;
+      error.classList.remove('hidden');
+    }
+
+    processBtn.addEventListener('click', processURL);
+
+    // License handling
+    const modal = document.getElementById('checkoutModal');
+    const licenseInput = document.getElementById('licenseInput');
+    const licenseError = document.getElementById('licenseError');
+
+    function openCheckout() {
+      if (CONFIG.CHECKOUT_URL) {
+        window.open(CONFIG.CHECKOUT_URL, '_blank');
+      } else {
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    }
+
+    function closeCheckout() {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      licenseError.classList.add('hidden');
+    }
+
+    document.getElementById('buyBtn').addEventListener('click', openCheckout);
+    document.getElementById('buyBtn2').addEventListener('click', openCheckout);
+    document.getElementById('buyBtn3').addEventListener('click', openCheckout);
+    document.getElementById('cancelBtn').addEventListener('click', closeCheckout);
+
+    document.getElementById('validateBtn').addEventListener('click', async () => {
+      const key = licenseInput.value.trim();
+      if (!key) {
+        licenseError.textContent = 'Please enter a license key';
+        licenseError.classList.remove('hidden');
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/validate', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ license_key: key })
+        });
+        const data = await response.json();
+
+        if (data.valid) {
+          alert('License validated! Pro features unlocked.');
+          closeCheckout();
+        } else {
+          licenseError.textContent = 'Invalid license key';
+          licenseError.classList.remove('hidden');
+        }
+      } catch (e) {
+        licenseError.textContent = 'Validation failed. Please try again.';
+        licenseError.classList.remove('hidden');
+      }
+    });
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeCheckout();
+    });
+  </script>
+</body>
+</html>
