@@ -35,4 +35,6 @@ Encode and decode URLs fast instead of staring at `%2F` like it insulted your fa
 
 ## Pricing
 
+**Checkout Status:** Checkout link isn't live yet. The public demo works now; LemonSqueezy activation is still pending.
+
 $9 planned one-time purchase. Public demo is already live for evaluation.
