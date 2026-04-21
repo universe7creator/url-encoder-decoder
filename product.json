@@ -6,12 +6,14 @@
   "price": "9",
   "features": [],
   "tech_stack": "Vercel + Node.js",
-  "status": "building",
-  "vercel_url": null,
+  "status": "live",
+  "vercel_url": "https://url-encoder-decoder.vercel.app",
   "github_url": null,
-  "lemonsqueezy_checkout_url": null,
+  "lemonsqueezy_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc",
   "lemonsqueezy_product_id": null,
   "webhook_url": null,
   "created_cycle": null,
-  "deployed_cycle": null
+  "deployed_cycle": null,
+  "checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc",
+  "lemon_checkout_url": "https://profitbridge.lemonsqueezy.com/checkout/buy/de3db6a0-aba6-42d7-a8eb-5bcb03d6c4bc"
 }
